@@ -1,0 +1,54 @@
+
+<body>
+	<form action="提交正确.html" method="post" name="myform">
+		<div align="center">
+			<table border="1" width="60%">
+				<tr>
+					<td colspan=2 align=center>
+						<h3>学生信息管理
+					</td>
+				</tr>
+				<tr>
+					<td height="39" width="463" bgcolor="#006699"><font
+						color="#FFFF00"> 学生编号：<input type="text" maxlength=10
+							id="mytext1" name="haoma">
+					</td>
+
+					<td height="39" width="463" bgcolor="#006699" id=1><font
+						color="#FFFF00"> 学生名字：<input type="text" maxlength=10
+							id="mytext2" name="name">
+					</td>
+				<tr>
+					<td id=2 height="53" width="985" bgcolor="#006699" colspan="2"
+						align=center><input type="button" value="使用button按钮提交表单"
+						onclick="checkNull(haoma,name)"></td>
+				</tr>
+				<tr>
+					<p id=3 dsfsadfdsf>
+				</tr>
+			</table>
+		</div>
+	</form>
+</body>
+
+<script>
+function checkNull(haoma,name)
+{
+ var haoma=myform.haoma.value;
+ var name=myform.name.value;
+   if ((/^\s*$/.test(haoma)))   
+        {  
+		   alert("学生编号为空字符串");
+        } 
+   if ((/^\s*$/.test(name)))
+   {
+	   alert("学生名字为空字符串");
+   }
+   if(!(/^\s*$/.test(haoma))&&!(/^\s*$/.test(name)))
+        {    
+           alert("通过");  return true;
+        };
+		return false;
+}
+</script>
+
