@@ -1,4 +1,4 @@
-package com.cn.resource;
+package com.cn.resource.test;
 
 import java.io.*;
 import java.net.*;
