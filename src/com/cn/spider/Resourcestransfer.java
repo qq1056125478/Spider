@@ -15,8 +15,6 @@ import com.cn.comm.Tools;
 public class Resourcestransfer {
 	
 	public void getResources(){
-		
-		
 	}
 	public void getMusicNamesauthorUrl(String songurl){
 		String filepath=System.getProperty("user.dir")+"\\file\\MusicList.txt";

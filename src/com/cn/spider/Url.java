@@ -13,10 +13,10 @@ import com.cn.comm.Tools;
  * @see jsoup 1.7 jar 2017年3月20日00:12:32
  * */
 public class Url {
-	private String Nextpageurl;
-	private String CategoriesUrl;
-	private static int CategoriesUrlCount = 1;
-	private static int PageUrlCount = 1;
+	private String nextPageUrl;
+	private String categoriesUrl;
+	private static int categoriesUrlCount = 1;
+	private static int pageUrlCount = 1;
 
 	public String getNextUrl(String url) {
 		String filepath = System.getProperty("user.dir")
@@ -30,11 +30,11 @@ public class Url {
 					.select("a").last();
 			if (Nextpageurl.hasAttr("href")) {
 				System.out.format("%-35s page:%3d\n", Nextpageurl,
-						PageUrlCount++);
+						pageUrlCount++);
 				if (out.checkError())
 					out.flush();
-				out.format("%-35s page:%3d \n", Nextpageurl, PageUrlCount);
-				this.Nextpageurl = "http://www.1ting.com"
+				out.format("%-35s page:%3d \n", Nextpageurl, pageUrlCount);
+				this.nextPageUrl = "http://www.1ting.com"
 						+ Nextpageurl.attr("href");
 			} else
 				Nextpageurl = null;
@@ -45,7 +45,7 @@ public class Url {
 			out.close();
 		}
 
-		return Nextpageurl;
+		return nextPageUrl;
 
 	}
 
@@ -63,18 +63,18 @@ public class Url {
 			}
 			out = new PrintWriter(new BufferedWriter(new FileWriter(f, true)));
 			doc = Jsoup.parse(new File(filepath), "utf-8");
-			Element e = doc.select("[id=" + CategoriesUrlCount++ + "]").first();
+			Element e = doc.select("[id=" + categoriesUrlCount++ + "]").first();
 			if (e == null)
-				return CategoriesUrl = null;
+				return categoriesUrl = null;
 
-			CategoriesUrl = new StringBuilder("http://www.1ting.com").append(
+			categoriesUrl = new StringBuilder("http://www.1ting.com").append(
 					e.attr("href").replaceAll(".html", "/song")).toString();
 			if (out.checkError())
 				out.flush();
 			out.format("%33s\n ************** %s **************\n\n", e.text(),
-					CategoriesUrl);
+					categoriesUrl);
 			System.out.format("%33s\n ************** %s **************\n\n",
-					e.text(), CategoriesUrl);
+					e.text(), categoriesUrl);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} finally {
@@ -82,7 +82,7 @@ public class Url {
 			out.close();
 		}
 
-		return CategoriesUrl;
+		return categoriesUrl;
 	}
 
 	public void saveAllCategoriesUrl(String filepath, Document doc) {
@@ -96,7 +96,7 @@ public class Url {
 					.select("[href^=/genre/g]");
 			PrintWriter out = Tools.getPrintWriter(filepath, true);
 			for (Element e : url) {
-				e.attr("id", String.valueOf(CategoriesUrlCount++));
+				e.attr("id", String.valueOf(categoriesUrlCount++));
 				System.out.println(e);
 				out.println(e.toString());
 				if (out.checkError())
